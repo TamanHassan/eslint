@@ -1,12 +1,4 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import { defineConfig } from "eslint/config";
-
-export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
-  tseslint.configs.recommended,
-]);
+import fs from "fs/promises";
 
 //Task 1
 const greet = (firstName) => {
@@ -74,7 +66,6 @@ const checkAuth = (user) => {
 };
 
 //Task 11
-import fs from "fs/promises";
 const read = async (path) => {
   try {
     const data = await fs.readFile(path, "utf-8");
@@ -95,30 +86,31 @@ const getData = async (url) => {
 };
 
 //Task 13
-const process = (data: number[]): number[] => {
+const processData = (data) => {
   return data
-    .filter((x: number) => {
-      return x > 10;
-    })
-    .map((x: number) => {
+   .filter ((x) => {
+    return x > 10;
+   })
+    .map((x) => {
       return x * 2;
     });
-};
+}
 
-//Task 14
+// Task 14
 const timer = (ms) => {
-  return new Promise((resolve)) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, ms);
-  };
+  });
+};
 
-  const runTimer = async () => {
-    console.log(`Timer started`);
-    await timer (1000);
-    console.log(`Timer finished`);
-  };
-  runTimer();
+const runTimer = async () => {
+  console.log(`Timer started`);
+  await timer(1000);
+  console.log(`Timer finished`);
+};
+runTimer();
 
   //Task 15
   const logErr = (m) => {
